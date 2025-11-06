@@ -1,0 +1,23 @@
+body {
+    background-color: red;
+}
+body h1 {
+    color: pink;
+    text-align: center;
+    font-size: 70px;
+    margin-top: 5%;
+    margin-bottom: auto;
+}
+#content h2 {
+    margin-left: 40%;
+    margin-right: auto;
+    font-size: 30px;
+}
+#content h3 {
+    margin-left: 40%;
+    margin-right: auto;
+}
+#content a {
+    color: pink;
+    font-size: 24px;
+}
