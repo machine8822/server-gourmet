@@ -1,23 +1,39 @@
 body {
-    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    background: repeating-linear-gradient(
+        to bottom,
+        red 0px, /* First color, starts at 0px */
+        pink 150px, /* First color, ends at 20px (stripe height) */
+        pink 150px, /* Second color, starts at 20px */
+        red 350px  /* Second color, ends at 40px (total pattern height) */
+    );
 }
 body h1 {
     color: pink;
     text-align: center;
     font-size: 70px;
-    margin-top: 5%;
+    margin-top: 50px;
     margin-bottom: auto;
+    display: block;
 }
-#content h2 {
-    margin-left: 40%;
+body img {
+    display: block;
+    padding: 20px;
+    margin-left: auto;
     margin-right: auto;
+    width: 200px;
+}
+
+#content h2 {
+    text-align: center;
     font-size: 30px;
 }
 #content h3 {
-    margin-left: 40%;
-    margin-right: auto;
+    text-align: center;
 }
 #content a {
     color: pink;
     font-size: 24px;
 }
+
+
