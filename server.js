@@ -21,7 +21,7 @@ const upload = multer({ storage: storage });
 let cheese = [
     {
         "_id":1,
-        "img1":"images/rouge.jpg",
+        "img1":"rouge.jpg",
         "name":"Ruby Rouge",
         "type":"Farmhouse Dutch Gouda",
         "location":"Netherlands",
@@ -30,7 +30,7 @@ let cheese = [
     },
     {
         "_id":2,
-        "img1":"",
+        "img1":"Shropshire.jpg",
         "name":"Shropshire Blue",
         "type":"Blue Cheese",
         "location":"England",
@@ -39,7 +39,7 @@ let cheese = [
     },
     {
         "_id":3,
-        "img1":"",
+        "img1":"Camembert.jpg",
         "name":"Camembert",
         "type":"Soft Cow Milk Cheese",
         "location":"France",
@@ -48,7 +48,7 @@ let cheese = [
     },
     {
         "_id":4,
-        "img1":"",
+        "img1":"Appenzeller.jpg",
         "name":"Appenzeller",
         "type":"Hard Cow Milk Cheese",
         "location":"Switzerland",
@@ -57,7 +57,7 @@ let cheese = [
     },
     {
         "_id":5,
-        "img1":"",
+        "img1":"Humboldt.jpg",
         "name":"Humboldt Fog",
         "type":"Goat Milk Cheese",
         "location":"USA",
@@ -68,7 +68,7 @@ let cheese = [
 let wine = [
     {
         "_id":1,
-        "img1":"",
+        "img1":"wine1.jpg",
         "name":"Chateau Margaux",
         "type":"Red Wine",
         "location":"France",
@@ -77,7 +77,7 @@ let wine = [
     },
     {
         "_id":2,
-        "img1":"",
+        "img1":"wine2.jpg",
         "name":"Pahlmeyer Merlot",
         "type":"Red Wine",
         "location":"USA",
@@ -86,7 +86,7 @@ let wine = [
     },
     {
         "_id":3,
-        "img1":"",
+        "img1":"wine3.jpg",
         "name":"Antinori Tignanello",
         "type":"Red Wine",
         "location":"Italy",
@@ -95,7 +95,7 @@ let wine = [
     },
     {
         "_id":4,
-        "img1":"",
+        "img1":"wine4.jpg",
         "name":"Domaine de la Romanee-Conti",
         "type":"Red Wine",
         "location":"France",
@@ -106,7 +106,7 @@ let wine = [
 let cigars = [
     {
         "_id":1,
-        "img1":"",
+        "img1":"cigar1.jpg",
         "name":"Cohiba Behike",
         "type":"Premium Cigar",
         "location":"Cuba",
@@ -114,7 +114,7 @@ let cigars = [
     },
     {
         "_id":2,
-        "img1":"",
+        "img1":"cigar2.jpg",
         "name":"Arturo Fuente Opus X",
         "type":"Premium Cigar",
         "location":"Dominican Republic",
@@ -122,7 +122,7 @@ let cigars = [
     },
     {
         "_id":3,
-        "img1":"",
+        "img1":"cigar3.jpg",
         "name":"Padrón 1964 Anniversary Series",
         "type":"Premium Cigar",
         "location":"Nicaragua",
@@ -130,7 +130,7 @@ let cigars = [
     },
     {
         "_id":4,
-        "img1":"",
+        "img1":"cigar4.jpg",
         "name":"Montecristo No. 2",
         "type":"Premium Cigar",
         "location":"Cuba",
