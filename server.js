@@ -25,7 +25,7 @@ let cheese = [
         "name":"Ruby Rouge",
         "type":"Farmhouse Dutch Gouda",
         "location":"Netherlands",
-        "aged":"6-7 months",
+        "timeAged":"6-7 months",
         "price":"$12.99/lb"
     },
     {
@@ -34,7 +34,7 @@ let cheese = [
         "name":"Shropshire Blue",
         "type":"Blue Cheese",
         "location":"England",
-        "aged":"3 months",
+        "timeAged":"3 months",
         "price":"$9.99/lb"
     },
     {
@@ -43,7 +43,7 @@ let cheese = [
         "name":"Camembert",
         "type":"Soft Cow Milk Cheese",
         "location":"France",
-        "aged":"5-6 weeks",
+        "timeAged":"5-6 weeks",
         "price":"$15.99/lb"
     },
     {
@@ -52,7 +52,7 @@ let cheese = [
         "name":"Appenzeller",
         "type":"Hard Cow Milk Cheese",
         "location":"Switzerland",
-        "aged":"3-6 months",
+        "timeAged":"3-6 months",
         "price":"$19.99/lb"
     },
     {
@@ -61,7 +61,7 @@ let cheese = [
         "name":"Humboldt Fog",
         "type":"Goat Milk Cheese",
         "location":"USA",
-        "aged":"2-3 weeks",
+        "timeAged":"2-3 weeks",
         "price":"$11.99/lb"
     }
 ];
