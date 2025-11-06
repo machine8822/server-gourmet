@@ -21,7 +21,7 @@ const upload = multer({ storage: storage });
 let cheese = [
     {
         "_id":1,
-        "img1":"rouge.jpg",
+        "image":"rouge.jpg",
         "name":"Ruby Rouge",
         "type":"Farmhouse Dutch Gouda",
         "location":"Netherlands",
@@ -30,7 +30,7 @@ let cheese = [
     },
     {
         "_id":2,
-        "img1":"Shropshire.jpg",
+        "image":"Shropshire.jpg",
         "name":"Shropshire Blue",
         "type":"Blue Cheese",
         "location":"England",
