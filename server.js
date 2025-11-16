@@ -188,7 +188,7 @@ app.post("/api/cheese/", upload.single("image"), (req, res)=>{
         price: req.body.price
     };
     if(req.file){
-        newCheese.image = "images/" + req.file.originalname;
+        newCheese.image = req.file.originalname;
     }
     cheese.push(newCheese);
     res.status(200).send(newCheese);
