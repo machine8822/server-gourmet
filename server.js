@@ -194,6 +194,33 @@ app.post("/api/cheese/", upload.single("image"), (req, res)=>{
     res.status(200).send(newCheese);
 });
 
+app.put("/api/cheese/:id", upload.single("image"), (req, res) => {
+    console.log("Cheese put request");
+    let cheeseId = cheese.find((c) => c._id === parseInt(req.params.id));
+    if (!cheeseId) {
+        res.status(404).send("Cheese with the given ID was not found.");
+        return;
+    }
+
+    const result = validateCheese(req.body);
+    if (result.error) {
+        res.status(400).send(result.error.details[0].message);
+        return;
+    }
+
+    cheeseId.name = req.body.name;
+    cheeseId.type = req.body.type;
+    cheeseId.location = req.body.location;
+    cheeseId.timeAged = req.body.timeAged;
+    cheeseId.price = req.body.price;
+
+    if (req.file) {
+        cheeseId.image = req.file.originalname;
+    }
+
+    res.status(200).send(cheeseId);
+});
+
 
 app.listen(3001, () => {
     console.log("Server is up and running.");
