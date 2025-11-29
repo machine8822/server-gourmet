@@ -170,7 +170,6 @@ const validateCheese = (data) => {
     return schema.validate(data);
 };
 
-
 app.post("/api/cheese/", upload.single("image"), (req, res)=>{
     console.log("Cheese post request");
     const result = validateCheese(req.body);
@@ -221,6 +220,17 @@ app.put("/api/cheese/:id", upload.single("image"), (req, res) => {
     res.status(200).send(cheeseId);
 });
 
+app.delete("/api/cheese/:id", (req, res) => {
+    console.log("Cheese delete request");
+    const cheeseId = cheese.find((c) => c._id === parseInt(req.params.id));
+    if (!cheeseId) {
+        res.status(404).send("Cheese with the given ID was not found.");
+        return;
+    }
+    const index = cheese.indexOf(cheeseId);
+    cheese.splice(index, 1);
+    res.send(cheeseId);
+});
 
 app.listen(3001, () => {
     console.log("Server is up and running.");
