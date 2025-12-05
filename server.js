@@ -7,6 +7,7 @@ app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
+const mongoose = require("mongoose");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -18,6 +19,22 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+mongoose
+    .connect("mongodb+srv://willytk249_db_user:ndaYL46eeiqPfbIG@gourmetcluster.onycwlm.mongodb.net/?appName=GourmetCluster")
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((error) => console.error("Could not connect to MongoDB...", error));
+
+const cheeseSchema = new mongoose.Schema({
+    name: String,
+    type: String,
+    location: String,
+    timeAged: String,
+    price: String,
+    image: String
+});
+
+const Cheese = mongoose.model("Cheese", cheeseSchema);
 
 //Json
 let cheese = [
@@ -144,10 +161,20 @@ let cigars = [
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
-app.get("/api/cheese/", (req, res)=>{
+/*app.get("/api/cheese/", (req, res)=>{
     console.log("Cheese get request");
     res.send(cheese);
+});*/
+app.get("/api/cheese/", async (req, res) => {
+    console.log("Cheese Mongo get request");
+    const cheeses = await Cheese.find();
+    res.send(cheeses);
 });
+app.get("/api/cheese/:id", async (req, res) => {
+    console.log("Cheese Mongo get by ID request");
+    const cheeseItem = await Cheese.findById({_id : id});
+});
+
 app.get("/api/wine/", (req, res)=>{
     console.log("Wine get request");
     res.send(wine);
@@ -170,7 +197,7 @@ const validateCheese = (data) => {
     return schema.validate(data);
 };
 
-app.post("/api/cheese/", upload.single("image"), (req, res)=>{
+app.post("/api/cheese/", upload.single("image"), async (req, res)=>{
     console.log("Cheese post request");
     const result = validateCheese(req.body);
     if(result.error){
@@ -178,7 +205,7 @@ app.post("/api/cheese/", upload.single("image"), (req, res)=>{
         return;
     }
 
-    const newCheese = {
+    /*const newCheese = {
         _id: cheese.length + 1,
         name: req.body.name,
         type: req.body.type,
@@ -190,11 +217,24 @@ app.post("/api/cheese/", upload.single("image"), (req, res)=>{
         newCheese.image = req.file.originalname;
     }
     cheese.push(newCheese);
-    res.status(200).send(newCheese);
+    res.status(200).send(newCheese);*/
+
+    const newCheese = new Cheese({
+        name: req.body.name,
+        type: req.body.type,
+        location: req.body.location,
+        timeAged: req.body.timeAged,
+        price: req.body.price
+    });
+    if(req.file){
+        newCheese.image = req.file.originalname;
+    }
+    const savedCheese = await newCheese.save();
+    res.status(200).send(savedCheese);
 });
 
-app.put("/api/cheese/:id", upload.single("image"), (req, res) => {
-    console.log("Cheese put request");
+app.put("/api/cheese/:id", upload.single("image"), async (req, res) => {
+    /*console.log("Cheese put request");
     let cheeseId = cheese.find((c) => c._id === parseInt(req.params.id));
     if (!cheeseId) {
         res.status(404).send("Cheese with the given ID was not found.");
@@ -217,11 +257,37 @@ app.put("/api/cheese/:id", upload.single("image"), (req, res) => {
         cheeseId.image = req.file.originalname;
     }
 
-    res.status(200).send(cheeseId);
+    res.status(200).send(cheeseId);*/
+    console.log("Cheese Mongo put request");
+    const result = validateCheese(req.body);
+
+    if (result.error) {
+        res.status(400).send(result.error.details[0].message);
+        return;
+    }
+    let fieldsToUpdate = {
+        name: req.body.name,
+        type: req.body.type,
+        location: req.body.location,
+        timeAged: req.body.timeAged,
+        price: req.body.price
+    };
+
+    if (req.file) {
+        fieldsToUpdate.image = req.file.originalname;
+    }
+    const wentThrough = await Cheese.updateOne(
+        { _id: req.params.id },
+        fieldsToUpdate
+    );
+
+    const updatedCheese = await Cheese.findOne({ _id: req.params.id });
+
+    res.status(200).send(updatedCheese);
 });
 
-app.delete("/api/cheese/:id", (req, res) => {
-    console.log("Cheese delete request");
+app.delete("/api/cheese/:id", async (req, res) => {
+    /*console.log("Cheese delete request");
     const cheeseId = cheese.find((c) => c._id === parseInt(req.params.id));
     if (!cheeseId) {
         res.status(404).send("Cheese with the given ID was not found.");
@@ -230,6 +296,10 @@ app.delete("/api/cheese/:id", (req, res) => {
     const index = cheese.indexOf(cheeseId);
     cheese.splice(index, 1);
     res.send(cheeseId);
+    */
+    console.log("Cheese Mongo delete request");
+    const deletedCheese = await Cheese.findByIdAndDelete(req.params.id);
+    res.send(deletedCheese);
 });
 
 app.listen(3001, () => {
